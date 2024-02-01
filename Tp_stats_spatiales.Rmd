@@ -1,0 +1,48 @@
+---
+title: "Tp2"
+output: html_document
+date: "2024-02-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#TP2
+
+## Question 1
+
+```{r}
+rm(list=ls())
+library(dplyr)
+library(sf)
+# setwd("Fond_carte")
+communes_france<-st_read("commune_francemetro_2021.shp", options="ENCODING=WINDOWS-1252")
+```
+
+## Question 2
+
+```{r}
+summary(communes_france)
+str(communes_france)
+```
+## Question 3
+
+```{r}
+View(communes_france[1:100,])
+```
+
+## Question 4
+
+```{r}
+st_crs(communes_france)
+```
+
+## Question 5
+
+```{r}
+communes_Bretagne<-communes_france %>% 
+  filter(substr(code, 1, 2) == "35") %>% 
+  select(code, libelle, epc, dep, surf)
+```
+
